@@ -1,20 +1,12 @@
 package roman;
 
 public class IntegerToRoman {
-    public static String intToRoman(int num)
+    public static String intToRoman(int number)
     {
-        int[] values = {10,9,5,4,1};
-        String[] romanLetters = {"X","IX","V","IV","I"};
-        StringBuilder roman = new StringBuilder();
-        for(int i=0;i<values.length;i++)
-        {
-            while(num >= values[i])
-            {
-                num = num - values[i];
-                roman.append(romanLetters[i]);
-            }
-        }
-        return roman.toString();
+        String[] hundreds = {"", "C"};
+        String[] tens = {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"};
+        String[] units = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
+        return  hundreds[(number % 1000) / 100] + tens[(number % 100) / 10] + units[number % 10];
     }
     public static int RomanToInt(String roman)
     {

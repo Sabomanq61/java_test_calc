@@ -4,13 +4,23 @@ import roman.IntegerToRoman;
 public class Main {
 public static void main(String[] args) {
     String operation = null;
-
-    Scanner scanner = new Scanner(System.in);
     String a,b;
 
-    a = scanner.next();
-    operation = scanner.next();
-    b = scanner.next();
+    String input;
+
+    Scanner scanner = new Scanner(System.in);
+    input = scanner.nextLine();
+
+    String[] splitStr = input.split(" ");
+
+    if (splitStr.length != 3)
+    {
+        throw new RuntimeException("Ввод не соответсвует формату: a + b");
+    }
+
+    a = splitStr[0];
+    operation = splitStr[1];
+    b = splitStr[2];
 
     int value1 = 0;
     int value2 = 0;
@@ -58,15 +68,20 @@ public static void main(String[] args) {
         }
         if (isRomanA)
         {
-            if(result < 0)
+            if(result < 1)
             {
                 throw new RuntimeException("В римской системе нет отрицательных чисел");
             }
+
             String resultR = IntegerToRoman.intToRoman(result);
             System.out.println(resultR);
             return;
         }
         System.out.println(result);
+    }
+    else
+    {
+        throw new RuntimeException("Калькулятор принимает числа только от 0 до 10");
     }
 }
 }
